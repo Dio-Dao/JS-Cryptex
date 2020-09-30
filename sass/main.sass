@@ -1,0 +1,474 @@
+@import "vars"
+@import "libs"
+
+html,
+body 
+    height: 100%
+    background-color: rgba(219, 215, 215, 0.125)
+body 
+    display: flex
+    justify-content: space-around
+    align-items: center
+    perspective: 1000px
+    perspective-origin: center -5em
+    // color: #5e5e5e
+.container
+    position: relative
+    display: block
+    width: 1024px
+    height: 100vh
+    background-color: #f9f9f9
+    box-shadow: 0px 7px 24.3px 2.7px rgba(91,89,89,0.14)
+    
+.side,
+.cryptex 
+    width: $size*2
+    height: $size*2
+    // background: $color_1
+    
+.cryptex 
+    right: 315px
+    bottom: 320px
+    position: absolute
+    transform-style: preserve-3d
+.cr_arrow
+    position: absolute;
+    width: $size;
+    height: $size;
+    left: 25px
+    margin: 30px auto 80px auto;
+    z-index: -1
+    pointer-events: none;
+    transform: translateY(-$pad*5) rotateX(90deg) rotateZ(180deg)
+    &::before
+        content: '';
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border-left: 26px solid rgba(255, 0, 0, 0.5);
+        border-bottom: 26px solid rgba(255, 0, 0, 0.5);
+        animation: arrow-8 3s linear infinite;
+    .cr_up
+        position: absolute;
+        width: 50px
+        height: 50px
+        left: 5px;
+        color: $color_1
+        font-size: 45px
+        font-weight: bold
+        pointer-events: none;
+        animation: arrow-up 3s linear infinite -2s;
+.form
+    position: absolute
+    display: block
+    padding: 10px
+    width: 330px
+    white-space: nowrap
+    height: 425px
+    background: #000
+    top: 35px
+    left: 70px
+    background-color: #f9f9f9
+    box-shadow: 0px 7px 24.3px 2.7px rgba(91,89,89,0.14)
+.form_title,.form_result
+    font-weight: 800
+    font-size: 155px
+    line-height: 135px
+    opacity: 0.07
+    z-index: 4
+    left: 0
+.form_task,.form_out,.form_btn,.form_pass,.form_task_ar,.arrows_mini
+    font-size: 35px
+    margin-bottom: 20px
+    color: #e61e20
+.form_pass
+    color: #5e5e5e
+    left: 25px
+    background-color: #f9f9f9
+    box-shadow: 0px 7px 24.3px 2.7px rgba(91,89,89,0.14)
+.form_out
+    font-size: 25px
+    width: 80%
+    word-wrap: break-word
+    left: 10px
+    color: #5e5e5e
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+.form_btn
+    position: absolute
+    width: 50px
+    height: 50px
+    background-color: $color_2
+    text-align: center
+    font-weight: bold
+    border-radius: 50%
+    box-shadow: 0px 7px 24.3px 2.7px rgba(91,89,89,0.14)
+    right: 10px
+    bottom: 12px
+    cursor: pointer
+    margin-bottom: 0
+    &::after
+        content: "<"
+        position: absolute
+        left: 12px
+        top: 6px
+        
+.form_result
+    bottom: -145px
+    font-size: 80px
+    display: none
+.form_display
+    display: block
+.form_display-none
+    display: none
+.circle
+    position: absolute
+    display: block
+    width: 350px
+    height: 370px
+    background: #000
+    bottom: 175px
+    right: 190px
+    background-color: #f9f9f9
+    // border-radius: 50%
+    box-shadow: 0px 7px 24.3px 2.7px rgba(91,89,89,0.14)
+.part_side
+    width: $size
+    height: $size
+    display: flex
+    justify-content: space-around
+    align-items: center
+
+.side 
+    position: absolute
+    width: $size * 2
+    height: $size * 2
+    border: 0.1em solid white
+    transform-style: preserve-3d
+    transition: 0.5s ease
+    display: grid
+    grid-template-columns: repeat(auto-fill, $size)
+    &:hover
+        cursor: pointer
+        // filter: drop-shadow(0 0 5px #000)
+        background-color: rgba(0, 0, 0, 0.4)
+.top 
+    transform: translateY(-$pad*4.25) rotateX(90deg)
+    background: $color_2
+.top_right 
+    transform: translateY(-$pad_diagonal*3)  translateX($pad_diagonal*3) rotateX(90deg) rotateY(45deg)
+    background: $color_2
+.top_left 
+    transform: translateY(-$pad_diagonal*3)  translateX(-$pad_diagonal*3) rotateX(90deg) rotateY(-45deg)
+    background: $color_2
+.top_back 
+    transform: translateY(-$pad_diagonal*3) translateZ(-$pad_diagonal*3) rotateX(-45deg) rotateY(180deg)
+    background: $color_2
+.top_font 
+    transform: translateY(-$pad_diagonal*3) translateZ($pad_diagonal*3) rotateX(45deg) rotateY(180deg)
+    background: $color_2
+.right 
+    transform: translateX($pad*4.25) rotateY(90deg)
+    background: $color_2
+.left 
+    transform: translateX(-$pad*4.25) rotateY(-90deg)
+    background: $color_2
+.back 
+    transform: translateZ(-$pad*4.25) rotateY(180deg)
+    background: $color_2
+.back_left
+    transform: translateZ(-$pad_diagonal*3) translateX(-$pad_diagonal*3) rotateY(45deg) 
+    background: $color_2
+.back_right
+    transform: translateZ(-$pad_diagonal*3) translateX($pad_diagonal*3) rotateY(-45deg) 
+    background: $color_2
+.front 
+    transform: translateZ($pad*4.25)
+    background: $color_2
+.front_left
+    transform: translateZ($pad_diagonal*3) translateX(-$pad_diagonal*3) rotateY(-45deg) 
+    background: $color_2
+.front_right
+    transform: translateZ($pad_diagonal*3) translateX($pad_diagonal*3) rotateY(45deg) 
+    background: $color_2
+.bottom 
+    transform: translateY($pad*4.25) rotateX(-90deg)
+    background: $color_2
+.bottom_left
+    transform: translateY($pad_diagonal*3)  translateX(-$pad_diagonal*3) rotateX(90deg) rotateY(45deg)
+    background: $color_2
+.bottom_right
+    transform: translateY($pad_diagonal*3)  translateX($pad_diagonal*3) rotateX(90deg) rotateY(135deg)
+    background: $color_2
+.bottom_back 
+    transform: translateY($pad_diagonal*3) translateZ(-$pad_diagonal*3) rotateX(45deg) rotateY(180deg)
+    background: $color_2
+.bottom_front 
+    transform: translateY($pad_diagonal*3) translateZ($pad_diagonal*3) rotateX(135deg) rotateY(180deg)
+    background: $color_2
+.triangle
+    position: absolute
+    border-left: $size solid transparent
+    border-right: $size solid transparent
+    border-bottom: $size*1.75 solid $color_2
+    display: grid
+    &:hover
+        cursor: pointer
+        // filter: drop-shadow(0 0 5px #000)
+        border-bottom: $size*1.75 solid  rgba(0, 0, 0, 0.4)
+.triangle_container
+    display: grid
+    position: absolute
+    grid-template-rows: repeat(2, 1fr)
+    grid-template-columns: repeat(2, 1fr)
+    grid-gap: 5px
+    left: -32px
+    bottom: -98px
+    transform: rotate(45deg)
+
+.part_tr
+    height: $size*0.6
+    width: $size*0.6
+    display: flex
+    justify-content: space-around
+    align-items: center
+    transform: rotate(-45deg)
+    
+.top_front_left
+    transform: translateY(-82px) translateZ(71px) translateX(-69px) rotateY(-45deg) rotateX(35deg)
+.top_front_right
+    transform: translateY(-81px) translateZ(70px) translateX(72px) rotateY(45deg) rotateX(35deg)
+.top_back_left
+    transform: translateY(-82px) translateZ(-71px) translateX(-70px) rotateY(45deg) rotateX(-35deg)
+.top_back_right
+    transform: translateY(-82px) translateZ(-70px) translateX(72px) rotateY(-45deg) rotateX(-35deg)
+.bottom_front_left
+    transform: translateY(97px) translateZ(71px) translateX(-69px) rotateY(-45deg) rotateX(145deg)
+.bottom_front_right
+    transform: translateY(97px) translateZ(70px) translateX(72px) rotateY(45deg) rotateX(145deg)
+.bottom_back_left
+    transform: translateY(97px) translateZ(-71px) translateX(-70px) rotateY(45deg) rotateX(-145deg)
+.bottom_back_right
+    transform: translateY(97px) translateZ(-70px) translateX(72px) rotateY(-45deg) rotateX(215deg)
+.smb
+    transform-style: preserve-3d
+    animation: rotate 10s infinite linear
+
+.small_box 
+    position: absolute
+    width: $size*2
+    height: $size*2
+    border: 0.1em solid white
+    &::before,&::after 
+        content: ""
+        display: block
+        position: absolute
+        left: 0
+        right: 0
+        bottom: 0
+        top: 0
+        margin: auto
+        filter: drop-shadow(0 0 10px #000)
+    &::before 
+        width: $size
+        height: $size
+        box-shadow: 0 0 10px 5px $color_2 inset
+        box-sizing: border-box
+        animation: rotate 20s infinite alternate-reverse
+    &::after 
+        width: $size
+        height: $size
+        box-sizing: border-box
+        animation: rotate 20s infinite alternate-reverse 
+.top_small_box 
+    transform: translateY(-$pad_2) rotateX(90deg) rotateZ(45deg)
+    background: $color_1
+.bottom_small_box 
+    transform: translateY($pad_2) rotateX(-90deg) rotateZ(45deg)
+    background: $color_1
+.left_small_box 
+    transform: translateX(-$pad_2) rotateY(-90deg) rotateZ(45deg)
+    background: $color_1
+.right_small_box 
+    transform: translateX($pad_2) rotateY(90deg) rotateZ(45deg)
+    background: $color_1
+.front_small_box 
+    transform: translateZ($pad_2) rotateZ(45deg)
+    background: $color_1
+.back_small_box 
+    transform: translateZ(-$pad_2) rotateY(180deg) rotateZ(45deg)
+    background: $color_1
+.part_tr, .part_side
+    &:hover
+        color: white
+        filter: drop-shadow(0 0 5px #ff0000)
+.arrows_mini
+    position: relative
+    width: 100%
+    height: 50px
+    display: flex
+    justify-content: space-between
+ 
+.arrow_left,.arrow_right,.arrow_top,.arrow_bottom
+    display: block
+    cursor: pointer;
+    width: 50px;
+    height: 10px;
+    margin: 20px 10px
+    
+    div 
+        position: relative;
+        width: 35px;
+        height: 10px;
+        background-color: $color_4;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+        left: 0;
+        display: block;
+        &::after,&::before
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 10px;
+            background-color: $color_4;
+    &:hover
+        animation: arrow_mini 1s linear infinite;
+.arrow_left div::after 
+    top: -6px;
+    right: 15px;
+    transform: rotate(-45deg);
+
+.arrow_left div::before 
+    top: 6px;
+    right: 15px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+    transform: rotate(45deg);
+
+.arrow_right div::after 
+    top: -6px;
+    right: -5px;
+    transform: rotate(45deg);
+.arrow_right div::before 
+    top: 6px;
+    right: -5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+    transform: rotate(-45deg);
+.arrow_top div
+    transform: rotate(90deg);
+.arrow_top div::after 
+    top: -6px;
+    right: 15px;
+    transform: rotate(-45deg);
+.arrow_top div::before 
+    top: 6px;
+    right: 15px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+    transform: rotate(45deg);
+.arrow_bottom div
+    transform: rotate(90deg);
+.arrow_bottom div::after 
+    top: -6px;
+    right: -5px;
+    transform: rotate(45deg);
+.arrow_bottom div::before 
+    top: 6px;
+    right: -5px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+    transform: rotate(-45deg);
+.cont_1,.cont_2
+    display: block
+    margin-bottom: 5px
+    
+
+
+@keyframes rotate
+    100% 
+        transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg) 
+
+@keyframes rotate-mobile
+    100% 
+
+        transform: rotateY(360deg)
+@keyframes arrow-8 
+    0%
+        opacity: 0;
+        transform: translate(0, -53px) rotate(-45deg);
+	
+    10%, 90%
+        opacity: 0;
+	
+    50%
+        opacity: 1;
+        border-left: 26px solid rgba(255, 0, 0, 0.2);
+        border-bottom: 26px solid rgba(255, 0, 0, 0.2);
+        transform: translate(0, 0) rotate(-45deg);
+	
+    100%
+        opacity: 0;
+        transform: translate(0, 53px) rotate(-45deg);
+@keyframes arrow-up
+    0%
+        opacity: 0;
+        transform: translate(0, -53px) rotate(180deg);
+	
+    10%, 90%
+        opacity: 0;
+	
+    50%
+        opacity: 1;
+
+        transform: translate(0, 0) rotate(180deg);
+	
+    100%
+        opacity: 0;
+        transform: translate(0, 53px) rotate(180deg);
+
+
+// @media ( max-width:970px  )
+//     .circle
+//         // background: #000
+//         height: 370px
+//         bottom: 20px
+//     .cryptex
+//         bottom: 165px
+// @media ( max-width:610px  )
+//     .circle
+//         left: 70px;
+//     .cryptex
+//         left: 195px
+@media ( max-width:970px  )
+    .form
+        top: 10px
+        height: 360px
+        margin: 0 20px
+        left: 0
+    .form_title
+        font-size: 105px;
+        line-height: 70px;
+    .form_result
+        font-size: 75px;
+    .circle
+        top: 400px
+        margin: 0 20px
+        left: 0
+    .cryptex
+        left: 140px
+        top: 530px
+    .form_pass, .form_task, .form_task_ar
+        font-size: 30px;
+    .form_out
+        font-size: 22px;
+        margin-top: 5px
+    .form
+        height: 340px
+@media ( max-width:375px  )
+
+    .form,.circle
+        margin: 0 5px
+    .cryptex
+        left: 130px
+
+    .smb
+        transform-style: preserve-3d
+        animation: rotate-mobile 10s infinite linear
