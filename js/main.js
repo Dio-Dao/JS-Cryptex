@@ -88,7 +88,7 @@ function rotate_cryptex(x) {
   let flag;
   let idproc;
   function ArrowDown(e) {
-    console.log(e.target);
+    // console.log(e.target);
     if (e.code == "ArrowLeft" || e == "left") {
       counterL += 1;
       cryptex.style.transform = `rotateY(${Math.floor(
@@ -123,13 +123,13 @@ function rotate_cryptex(x) {
   });
   function mouseDownEvent() {
     flag = true;
-    console.log(flag);
+    // console.log(flag);
     idproc = setInterval(() => ArrowDown(this.getAttribute("direction")), 50);
   }
   function mouseUpEvent() {
     flag = false;
     clearInterval(idproc);
-    console.log(flag);
+    // console.log(flag);
   }
 }
 rotate_cryptex();
